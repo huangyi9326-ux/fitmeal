@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    /* 桌面端查看时保留浅绿背景，凸出 375px 手机画布 */
+    background: #eaf0e5;
+    color: #263323;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* 375px 移动端页面画布 */
+  .app-shell {
+    @apply relative mx-auto min-h-screen w-full max-w-[375px] bg-cream;
+    box-shadow: 0 0 50px rgba(63, 120, 50, 0.12);
+  }
+
+  .page {
+    @apply relative min-h-screen w-full overflow-x-hidden pb-28;
+    background: #f6f9f2;
+  }
+
+  .card {
+    @apply rounded-3xl bg-white shadow-card;
+  }
+
+  .soft-card {
+    @apply rounded-2xl bg-white shadow-card;
+  }
+
+  /* 顶部浅绿渐变背景（首页 / 记录 / 我的） */
+  .hero-bg {
+    background:
+      radial-gradient(circle at 88% 8%, rgba(139, 203, 108, 0.34), transparent 46%),
+      radial-gradient(circle at 6% 0%, rgba(190, 226, 160, 0.5), transparent 52%),
+      linear-gradient(180deg, #e7f4dc 0%, #f2f9ec 62%, #f6f9f2 100%);
+  }
+
+  /* 手写体装饰文案 */
+  .handwrite {
+    font-family: 'STKaiti', 'KaiTi', 'Songti SC', serif;
+    font-style: italic;
+    color: #7ba863;
+    transform: rotate(-7deg);
+    line-height: 1.45;
+  }
+
+  /* 隐藏滚动条（横向标签、图片列表） */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .section-title {
+    @apply flex items-center gap-1.5 text-[16px] font-semibold text-ink;
+  }
+}
+
+/* 底部弹层动画（仅保留轻量过渡） */
+.sheet-enter-active,
+.sheet-leave-active {
+  transition: opacity 0.22s ease;
+}
+.sheet-enter-active .sheet-panel,
+.sheet-leave-active .sheet-panel {
+  transition: transform 0.22s ease;
+}
+.sheet-enter-from,
+.sheet-leave-to {
+  opacity: 0;
+}
+.sheet-enter-from .sheet-panel,
+.sheet-leave-to .sheet-panel {
+  transform: translateY(100%);
+}
+
+/* Toast 动画 */
+.toast-enter-active,
+.toast-leave-active {
+  transition: all 0.2s ease;
+}
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -8px);
+}
+
+/* 搜索框、输入框统一样式 */
+.field {
+  @apply w-full rounded-xl border border-[#E6EEE0] bg-[#FAFCF8] px-3 py-2.5 text-[14px] text-ink outline-none placeholder:text-[#A9B5A5] focus:border-primary-300;
+}
+
+/* 隐藏 details 默认的小三角，使用自定义箭头 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 禁止数字输入框的上下箭头 */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
