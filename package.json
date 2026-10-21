@@ -1,0 +1,14 @@
+{
+  "name": "fitmeal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "轻盈食光 · 减脂餐移动端 H5（前后端一体部署入口）",
+  "scripts": {
+    "postinstall": "cd server && npm install",
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && npm start"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
